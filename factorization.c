@@ -6,18 +6,17 @@
 /*   By: chlee <chlee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:34:07 by chlee             #+#    #+#             */
-/*   Updated: 2020/04/02 22:35:08 by chlee            ###   ########.fr       */
+/*   Updated: 2020/04/02 23:27:25 by chlee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define ERROR_NUM_RANGE 1
-#define ERROR_ARGC_MORE_TWO 1 << 1
-#define ERROR_ARGC_LESS_TWO 1 << 2
-#define ERROR_WRONG_INPUT 1 << 3
+#define ERROR_NUM_RANGE 2
+#define ERROR_ARGC_MORE_TWO 2 << 1
+#define ERROR_ARGC_LESS_TWO 2 << 2
+#define ERROR_WRONG_INPUT 2 << 3
 #define TRUE 1
 #define FALSE 0
 #include <unistd.h>
-#include <stdio.h>
 
 static int		ft_print_error(const int error, char info)
 {
@@ -58,6 +57,50 @@ static void		ft_putnbr(unsigned int number)
 	write(1, &singleDigit, 1);
 }
 
+/*
+**  function name   : ft_factorization
+**  function params : unsigned int number
+**  function work   : Doing factorization and print prime factor.
+**                    The variable 'spaceCheck' handles to print space character.
+**  return value    : On error, print err and return fALSE.
+**                    On not error, return number.
+*/
+
+static void		ft_factorization(unsigned int number)
+{
+	size_t	divisor;
+	size_t	spaceCheck;
+
+	divisor = 2;
+	spaceCheck = FALSE;
+	while (divisor <= 65535 && number > 1)
+	{
+		if (number % divisor == 0)
+		{
+			while (number % divisor == 0)
+				number /= divisor;
+			if (spaceCheck)
+				write(1, " ", 1);
+			ft_putnbr(divisor);
+			spaceCheck = TRUE;
+		}
+		divisor++;
+	}
+	if (number > 1)
+		ft_putnbr(number);
+	write(1, "\n", 1);
+}
+
+/*
+**  function name   : ft_atoi
+**  function params : const char *inputStr
+**  function work   : Receive the preprocessed str from the main function
+**                    and change to a number. Also, Check if str exceeds 10 digits,
+**                    is not a number, number is less than 1, or is 10 digits (UINT_MAX).
+**  return value    : On error, print err and return fALSE.
+**                    On not error, return number.
+*/
+
 static int		ft_atoi(const char *inputStr)
 {
 	size_t			idx = 0;
@@ -86,30 +129,13 @@ static int		ft_atoi(const char *inputStr)
 	return (number);
 }
 
-static void		ft_factorization(unsigned int number)
-{
-	size_t	divisor;
-	size_t	blankCheck;
-
-	divisor = 2;
-	blankCheck = FALSE;
-	while (divisor <= 65535 && number > 1)
-	{
-		if (number % divisor == 0)
-		{
-			while (number % divisor == 0)
-				number /= divisor;
-			if (blankCheck)
-				write(1, " ", 1);
-			ft_putnbr(divisor);
-			blankCheck = TRUE;
-		}
-		divisor++;
-	}
-	if (number > 1)
-		ft_putnbr(number);
-	write(1, "\n", 1);
-}
+/*
+**  function name   : main
+**  function params : int argc, char *argv[]
+**  function work   : Input number and 'preprocessing' when input_num is valid.
+**                    'preprocessing' means to delete '0' from the start of the string.
+**  return value    : return 0.
+*/
 
 int				main(int argc, char *argv[])
 {
