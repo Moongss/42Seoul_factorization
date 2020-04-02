@@ -6,13 +6,13 @@
 ```
 
 * TEST1 - 기본 입력
-![fact1](C:\\Users\\Develop\\Desktop\\fact1.PNG)
+<img width="535" alt="fact1" src="https://user-images.githubusercontent.com/20695892/78258695-8f3c5100-7536-11ea-83d2-b0e52c8f4320.PNG">
 
 * TEST2 - 특수 입력에 따른 정상출력/예외처리
-![fact2](C:\\Users\\Develop\\Desktop\\fact2.PNG)
+<img width="526" alt="fact2" src="https://user-images.githubusercontent.com/20695892/78258707-95323200-7536-11ea-9511-9da6a651c3e6.PNG">
 
 * TEST3 - 입력 개수에 따른 예외처리
-![fact3](C:\\Users\\Develop\\Desktop\\fact3.PNG)
+<img width="547" alt="fact3" src="https://user-images.githubusercontent.com/20695892/78258709-96635f00-7536-11ea-958e-9f4063daf03b.PNG">
 
 * 예외 케이스
 ```
